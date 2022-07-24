@@ -1,8 +1,8 @@
 package com.practice.api;
 
-import com.practice.models.request.User;
-import com.practice.models.response.UserAPIResponse;
-import com.practice.models.swagger.SwaggerSuccessResponse;
+import com.practice.models.springdocs.request.User;
+import com.practice.models.springdocs.response.UserAPIResponse;
+import com.practice.models.springdocs.swagger.SwaggerSuccessResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -18,7 +18,7 @@ import javax.validation.constraints.Size;
 
 @RestController
 @RequestMapping(path = "/api")
-public class SwaggerDemoController {
+public class SpringDocsDemoController {
 
     @Operation(summary = "Swagger Docs Summary", description = "Swagger Docs Description")
     @ApiResponses(value = {
@@ -27,7 +27,7 @@ public class SwaggerDemoController {
             @ApiResponse(responseCode = "400", description = "YOUR REQUEST IS BAD!!!!!"),
             @ApiResponse(responseCode = "404", description = "THIS AINT FOUND!!!!!"),
             @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR!!!!!")})
-    @PostMapping(path = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/springdocs", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserAPIResponse> createUser(
             @Parameter(description = "Authentication is Required", required = true)
             @Pattern(regexp = "(password|taco)", message = "Invalid Password")

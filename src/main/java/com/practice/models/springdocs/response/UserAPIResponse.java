@@ -1,4 +1,4 @@
-package com.practice.models.response;
+package com.practice.models.springdocs.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

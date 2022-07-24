@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-public class SwaggerConfiguration {
+public class SpringDocsSwaggerConfiguration {
 
     private static final String BEARER_FORMAT = "JWT";
     private static final String SCHEME = "bearer";

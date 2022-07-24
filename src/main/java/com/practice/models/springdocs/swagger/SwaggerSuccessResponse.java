@@ -1,4 +1,4 @@
-package com.practice.models.swagger;
+package com.practice.models.springdocs.swagger;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
