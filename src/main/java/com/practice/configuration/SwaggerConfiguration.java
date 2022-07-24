@@ -15,8 +15,8 @@ import java.util.List;
 public class SwaggerConfiguration {
 
     private static final String BEARER_FORMAT = "JWT";
-    private static final String SCHEME = "Bearer";
-    private static final String SECURITY_SCHEME_NAME = "Security Scheme";
+    private static final String SCHEME = "bearer";
+    private static final String SECURITY_SCHEME_NAME = "SecurityScheme";
 
     @Bean
     public OpenAPI swaggerDocs() {
@@ -31,7 +31,7 @@ public class SwaggerConfiguration {
                 .title("Spring Boot Swagger API")
                 .description("Example of Springdocs swagger usage")
                 .version("v0.0.1")
-                .contact(new Contact().name("Marco").email("randomEmail").url("randomURL"));
+                .contact(new Contact().name("Marco").email("randomEmail@random.com").url("randomURL"));
     }
 
     @Bean
