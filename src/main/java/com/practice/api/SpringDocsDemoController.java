@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +19,8 @@ import javax.validation.constraints.Size;
 @RequestMapping(path = "/api")
 public class SpringDocsDemoController {
 
-    @Operation(summary = "Swagger Docs Summary", description = "Swagger Docs Description")
-    @ApiResponses(value = {
+    @Operation(summary = "Swagger Docs Summary", description = "Swagger Docs Description", tags = {"Spring Docs Example"},
+            responses = {
             @ApiResponse(responseCode = "200", description = "SUCCESS!!!!!", content = @Content(schema =
             @Schema(implementation = SwaggerSuccessResponse.class))),
             @ApiResponse(responseCode = "400", description = "YOUR REQUEST IS BAD!!!!!"),

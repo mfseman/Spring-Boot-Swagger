@@ -6,12 +6,14 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springdoc.core.GroupedOpenApi;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
 @Configuration
+@ConditionalOnProperty(name = "spring.swagger.configuration", havingValue = "springdocs")
 public class SpringDocsSwaggerConfiguration {
 
     private static final String BEARER_FORMAT = "JWT";
