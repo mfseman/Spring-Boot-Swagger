@@ -3,13 +3,13 @@ package com.practice.configuration;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.security.OAuthFlows;
-import io.swagger.v3.oas.models.security.SecurityRequirement;
-import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.security.*;
 import org.springdoc.core.GroupedOpenApi;
+import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Configuration
@@ -17,7 +17,7 @@ public class SpringDocsSwaggerConfiguration {
 
     private static final String BEARER_FORMAT = "JWT";
     private static final String SCHEME = "bearer";
-    private static final String SECURITY_SCHEME_NAME = "SecurityScheme";
+    private static final String SECURITY_SCHEME_NAME = "AzureAD";
 
     @Bean
     public OpenAPI swaggerDocs() {
@@ -43,19 +43,34 @@ public class SpringDocsSwaggerConfiguration {
                 .build();
     }
 
+    @Bean
+    public OpenApiCustomiser openApiCustomiser() {
+        return openApi -> openApi.getComponents().getSchemas().values()
+                .forEach(schema -> schema.setAdditionalProperties(false));
+    }
+
     private List<SecurityRequirement> getSecurityRequirement() {
-        SecurityRequirement securityRequirement = new SecurityRequirement();
-        securityRequirement.addList(SECURITY_SCHEME_NAME);
-        return List.of(securityRequirement);
+        return List.of(new SecurityRequirement()
+                .addList(SECURITY_SCHEME_NAME, List.of("write_user", "read_user")));
     }
 
     private SecurityScheme getSecurityScheme() {
-        SecurityScheme securityScheme = new SecurityScheme();
-        securityScheme.bearerFormat(BEARER_FORMAT);
-        securityScheme.type(SecurityScheme.Type.HTTP);
-        securityScheme.in(SecurityScheme.In.HEADER);
-        securityScheme.scheme(SCHEME);
-        securityScheme.flows(new OAuthFlows());
-        return securityScheme;
+        return new SecurityScheme()
+                .bearerFormat(BEARER_FORMAT)
+                .type(SecurityScheme.Type.OAUTH2)
+                .flows(oAuthFlows())
+                .scheme(SCHEME);
+    }
+
+    private OAuthFlows oAuthFlows() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("authorizationUrl", "Authorization URL");
+        return new OAuthFlows()
+                .implicit(new OAuthFlow()
+                        .authorizationUrl("Authorization URL")
+                        .scopes(new Scopes()
+                                .addString("write_user", "Add a user")
+                                .addString("read_user", "read a user")))
+                .extensions(map);
     }
 }
