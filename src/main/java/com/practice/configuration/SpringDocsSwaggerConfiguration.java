@@ -63,14 +63,11 @@ public class SpringDocsSwaggerConfiguration {
     }
 
     private OAuthFlows oAuthFlows() {
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("authorizationUrl", "Authorization URL");
         return new OAuthFlows()
                 .implicit(new OAuthFlow()
                         .authorizationUrl("Authorization URL")
                         .scopes(new Scopes()
                                 .addString("write_user", "Add a user")
-                                .addString("read_user", "read a user")))
-                .extensions(map);
+                                .addString("read_user", "read a user")));
     }
 }
