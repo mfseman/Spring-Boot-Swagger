@@ -16,7 +16,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
 	//Swagger
-//	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
 
 	//lombok
@@ -28,4 +27,9 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	enabled = false
+	archiveClassifier = '' //use empty string
 }

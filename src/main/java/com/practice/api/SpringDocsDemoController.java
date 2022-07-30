@@ -1,8 +1,8 @@
 package com.practice.api;
 
-import com.practice.models.springdocs.request.User;
-import com.practice.models.springdocs.response.UserAPIResponse;
-import com.practice.models.springdocs.swagger.SwaggerSuccessResponse;
+import com.practice.models.request.User;
+import com.practice.models.response.UserAPIResponse;
+import com.practice.models.swagger.SwaggerSuccessResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
