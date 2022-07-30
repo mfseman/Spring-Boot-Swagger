@@ -4,12 +4,10 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.*;
-import org.springdoc.core.GroupedOpenApi;
 import org.springdoc.core.customizers.OpenApiCustomiser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Configuration
@@ -36,15 +34,7 @@ public class SpringDocsSwaggerConfiguration {
     }
 
     @Bean
-    public GroupedOpenApi publicApi() {
-        return GroupedOpenApi.builder()
-                .group("springboot-swagger")
-                .pathsToMatch("/api/**")
-                .build();
-    }
-
-    @Bean
-    public OpenApiCustomiser openApiCustomiser() {
+    public OpenApiCustomiser setAdditionalProperties() {
         return openApi -> openApi.getComponents().getSchemas().values()
                 .forEach(schema -> schema.setAdditionalProperties(false));
     }
